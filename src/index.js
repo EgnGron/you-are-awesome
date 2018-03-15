@@ -1,16 +1,70 @@
 // DO WHATEVER YOU WANT HERE
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
-const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+const createEnumerableProperty = (name) => {
+    return name
+};
+
+
+const createNotEnumerableProperty = (value) => {
+    // no ideas
+};
+
+const createProtoMagicObject = () => {
+    var a = {}
+    function b(){}
+    b.__proto__ = a
+    b.prototype = a
+    return b
+};
+
+var counter = 0;
+const incrementor = () => {
+   var incrementInner = () => {
+       counter++
+       return incrementInner
+   }
+
+   incrementInner.valueOf = () => {
+       return counter
+   }
+
+   counter++;
+   return incrementInner;
+};
+
+const asyncIncrementor = (() => {
+    var counter = 0;
+    var incrementInner = () => {
+      counter++;
+      return incrementInner;
+    }
+    
+    incrementInner.valueOf = () => {
+        return counter;
+    }
+   
+    return incrementInner;
+ })()
+
+const createIncrementer = () => {
+    //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/yield*
+    function* g1() {
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+    return g1()
+};
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
+
 const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+
+const createSerializedObject = () => {
+    return new String("Bla Bla Bla") 
+};
+
 const toBuffer = () => {};
 const sortByProto = () => {};
 
